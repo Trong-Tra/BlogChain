@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	//"encoding/binary"
+	"encoding/binary"
 
 	"blog/x/blog/types"
 
@@ -19,4 +19,15 @@ func (k Keeper) AppendPost(ctx sdk.Context, post types.Post) uint64 {
 	store.Set(GetPostIDBytes(post.id), appendedValue)
 	k.SetPostCount(ctx, count+1)
 	return count
+}
+
+func (k Keeper) GetPostCount(ctx sdk.Context) uint64 {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, []byte{})
+	byteKey := types.KeyPrefix(types.PostCountKey)
+	bz := store.Get(byteKey)
+	if bz == nil {
+		return 0
+	}
+	return binary.BigEndian.Uint64(bz)
 }

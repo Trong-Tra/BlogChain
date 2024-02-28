@@ -9,6 +9,9 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_blog"
+
+	// PostKey defines store and retrieve posts from the db
+	PostKey = "Post/value/"
 )
 
 var (

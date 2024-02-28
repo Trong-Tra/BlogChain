@@ -14,9 +14,9 @@ func (k Keeper) AppendPost(ctx sdk.Context, post types.Post) uint64 {
 	count := k.GetPostCount(ctx)
 	post.Id = count
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.Postkey))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PostKey))
 	appendedValue := k.cdc.MustMarshal(&post)
-	store.Set(GetPostIDBytes(post.id), appendedValue)
+	store.Set(GetPostIDBytes(post.Id), appendedValue)
 	k.SetPostCount(ctx, count+1)
 	return count
 }

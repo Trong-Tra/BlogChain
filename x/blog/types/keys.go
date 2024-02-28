@@ -12,6 +12,9 @@ const (
 
 	// PostKey defines store and retrieve posts from the db
 	PostKey = "Post/value/"
+
+	// PostCountKey defines to keep track of the ID of the lastest post added to the store
+	PostCountKey = "Post/count/"
 )
 
 var (

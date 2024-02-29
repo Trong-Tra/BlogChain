@@ -15,10 +15,11 @@ func (k msgServer) DeletePost(goCtx context.Context, msg *types.MsgDeletePost) (
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	val, found := k.GetPost(ctx, msg.Id)
+	PostId := msg.Id
 	if !found {
 		return nil,
 			errorsmod.Wrap(sdkerrors.ErrKeyNotFound,
-				fmt.Sprintf("Key %d doesn't exist", msg.Id))
+				fmt.Sprintf("Key %d doesn't exist", PostId))
 	}
 	if msg.Creator != val.Creator {
 		return nil,
@@ -27,5 +28,6 @@ func (k msgServer) DeletePost(goCtx context.Context, msg *types.MsgDeletePost) (
 	}
 
 	k.RemovePost(ctx, msg.Id)
+	fmt.Printf("Post %v is successfully delete", PostId)
 	return &types.MsgDeletePostResponse{}, nil
 }

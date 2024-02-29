@@ -21,10 +21,11 @@ func (k msgServer) UpdatePost(goCtx context.Context, msg *types.MsgUpdatePost) (
 		Body:    msg.Body,
 	}
 	val, found := k.GetPost(ctx, msg.Id)
+	PostId := msg.Id
 	if !found {
 		return nil,
 			errorsmod.Wrap(sdkerrors.ErrKeyNotFound,
-				fmt.Sprintf("Key %d doesn't exist", msg.Id))
+				fmt.Sprintf("Key %d doesn't exist", PostId))
 	}
 
 	if msg.Creator != val.Creator {
@@ -34,5 +35,6 @@ func (k msgServer) UpdatePost(goCtx context.Context, msg *types.MsgUpdatePost) (
 	}
 
 	k.SetPost(ctx, post)
+	fmt.Printf("Post %v is successfully update", PostId)
 	return &types.MsgUpdatePostResponse{}, nil
 }

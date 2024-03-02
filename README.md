@@ -52,6 +52,6 @@ git push origin v0.1
 <hr>
 Developer note:
 Lasted update: 3/2/2024
-* This chain is for studying purpose, not recommend to be  used as mainnet or testnet.
-* The codebase may have bugs that could potentially lead to loss of funds. Use at your own risk.
-* Functions and queries is successfully tested, the repository does not include the daemon file, please follow the instruction or contact with the repo-owner for further assistance.
+- This chain is for studying purpose, not recommend to be  used as mainnet or testnet.
+- The codebase may have bugs that could potentially lead to loss of funds. Use at your own risk.
+- Functions and queries is successfully tested, the repository does not include the daemon file, please follow the instruction or contact with the repo-owner for further assistance.
